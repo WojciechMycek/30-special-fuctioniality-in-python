@@ -123,6 +123,12 @@ class Menu():
         choose = int(input("Please pick one with number:"))
         print("You choice is: ", countries[choose])
 
+    #12
+    def convert_to_revert():
+        user_value = input("Set your value")
+        for i in reversed(range(0, len(user_value))):
+            print(user_value[i])
+    
     classmethod
     def convert_int_to_str_and_otherwise(self):
         while True:
