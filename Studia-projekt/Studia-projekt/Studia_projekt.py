@@ -1,6 +1,9 @@
 from lib2to3.pytree import convert
 from socket import inet_pton
+from fractions import Fraction
+from tkinter import *
 import os
+import re
 
 class Menu():
     #variables
@@ -124,23 +127,67 @@ class Menu():
         print("You choice is: ", countries[choose])
 
     #12
-    def convert_to_revert():
-        user_value = input("Set your value")
-        for i in reversed(range(0, len(user_value))):
-            print(user_value[i])
-    
+    def sets(self):
+        X = set('mielonka')
+        Y = set('szynka')
+        print(X & Y)
+        print(X | Y)
+        print(X-Y)
+        print(X > Y)
     #13
-    def check_user_choice_arrary():
-        newArray = array('i', [1,2,3,4,5])
-        while True:
-            user_choice = int(input("User's choice: "))
-            for i in range(0, len(newArray)):
-                if newArray[i] == user_choice:
-                    continue
+    def bits(self):
+        X = 0xFF
+        print(bin(X))
+        print(X ^ 0b10101010)
+        print('01010101',2)
+        print(hex(85))
+    #14
+    def fraction(self):
+        x = Fraction(1,1)
+        y = Fraction(4,6)
+        print(x+y)
+    #15
+    def delete_duplicate(self):
+        print(set([1,2,3,4,5]) - set([1,2,4,5,6]))
+    #16
+    def regex_phone_number(self,records_lists_to_search):
+
+        phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+        for i in range(len(records_lists_to_search)):
+            mo = phoneNumRegex.findall(records_lists_to_search[i])
+            if mo == None:
+                return None
             else:
-                break
-        print(newArray.index(user_choice))
-        print("Lista",newArray,"\n")
+                print(mo)
+    #17
+    def find_area_code_number(self,records_lists_to_search):
+        phoneNumRegex = re.compile(r'(\(\d\d\d\)) (\d\d\d-\d\d\d\d)')
+        for i in range(len(records_lists_to_search)):
+            mo = phoneNumRegex.findall(records_lists_to_search[i])
+            if mo == None:
+                return None
+            else:
+                print(mo)
+    #18
+    def comprehension_list(self):
+        fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+        newlist = [x for x in fruits if "a" in x]
+        print(newlist)
+    #19
+    def comprehension_sets(self):
+        {c * 4 for c in 'mielonka'}
+    #20
+    def reverse_word(self,word):
+        for i in reversed(word):
+            print(i)
+
+    #21
+    def window_hello(self):
+        root = Tk()
+        root.title("Hi!")
+        tittle_label = Label(root,text="Hello World!!")
+        tittle_label.grid(row=0,column=0,pady=(10,0))
+        root.mainloop()
 
     classmethod
     def convert_int_to_str_and_otherwise(self):
@@ -170,5 +217,4 @@ class Menu():
 
 
 
-Menu().start_menu()
-
+Menu().window_hello()
