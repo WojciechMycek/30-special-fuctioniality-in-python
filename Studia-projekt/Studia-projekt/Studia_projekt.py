@@ -129,6 +129,19 @@ class Menu():
         for i in reversed(range(0, len(user_value))):
             print(user_value[i])
     
+    #13
+    def check_user_choice_arrary():
+        newArray = array('i', [1,2,3,4,5])
+        while True:
+            user_choice = int(input("User's choice: "))
+            for i in range(0, len(newArray)):
+                if newArray[i] == user_choice:
+                    continue
+            else:
+                break
+        print(newArray.index(user_choice))
+        print("Lista",newArray,"\n")
+
     classmethod
     def convert_int_to_str_and_otherwise(self):
         while True:
