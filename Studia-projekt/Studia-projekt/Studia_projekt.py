@@ -1,9 +1,16 @@
+from email import message
 from lib2to3.pytree import convert
+from platform import win32_edition
 from socket import inet_pton
 from fractions import Fraction
 from tkinter import *
 import os
 import re
+import random
+import sys
+from tkinter.tix import InputOnly
+from xml.dom.expatbuilder import theDOMImplementation
+from xmlrpc.client import _iso8601_format
 
 class Menu():
     #variables
@@ -188,8 +195,49 @@ class Menu():
         tittle_label = Label(root,text="Hello World!!")
         tittle_label.grid(row=0,column=0,pady=(10,0))
         root.mainloop()
+    #22
+    def gues_the_number(self):
+        while True:
+            number = random.randint(0,9)
+            user_choice = input("Please guess the number: ")
+            if number == user_choice:
+                print("You won!")
+                break
+            else:
+                print("Try again!")
+                continue
 
-    classmethod
+    #23
+    def list_of_friends_on_birthday(self):
+        friends_list = []
+        while True:
+            decision = input("Do you want add someone?")
+            if decision == "yes":
+                friends_list.append(input("Please fill name:  "))
+            elif decision == "no":
+                for i in friends_list:
+                    print("Your friend:  ", i)
+                    break
+            else:
+                print("Wrong decision. Try again!")
+                continue
+    #24 
+    def simple_dictioniary_phone(self):
+        tel = {'Tomasz': 444,
+               'Rafal': 789,
+               'Marian': 766,
+               'Jonasz': 344,
+               'Maniek': 444}
+        
+        name = input("Please fill name: ")
+        score = tel[name]
+
+        if name in tel == False:
+            print("There is no contact")
+        else:
+            print(score)
+
+    #25
     def convert_int_to_str_and_otherwise(self):
         while True:
             value = input("Please set a value, that you want to convert")
@@ -213,8 +261,123 @@ class Menu():
                 break
             else:
                 print("Your choice is bad. Please try again!")
-     
 
+    #26
+    def kolko_krzyzyk(self):
+        theBoard = {
+            'top-l': ' ', 'top-m': ' ', 'top-r': ' ',
+            'mid-l': ' ', 'mid-m': ' ', 'mid-r': ' ',
+            'low-l': ' ', 'low-m': ' ', 'low-r': ' '
+            }
 
+        turn = "X"
+        for i in range(9):
+            print(theBoard['top-l'] + ' | ' + theBoard['top-m'] + ' | ' + theBoard['top-r'])
+            print("-----")
+            print(theBoard['mid-l'] + ' | ' + theBoard['mid-m'] + ' | ' + theBoard['mid-r'])
+            print("-----")
+            print(theBoard['low-l'] + ' | ' + theBoard['low-m'] + ' | ' + theBoard['low-r'])
+            print("Ruch gracza" + turn + "W ktorym polu stawiasz znak?")
+            move = input()
+            theBoard[move] = turn
+            if turn == "X":
+                turn = "0"
+            else:
+                turn = "X"
+    #27
+    def papier_kamien_nozyce():
+        wins = 0
+        losses = 0
+        ties = 0
 
-Menu().window_hello()
+        while True:
+            print('%s zwyciestw, %s porazek, %remisow' % (wins,losses,ties))
+            while True:
+                print("Podaj swoj wybor: (k)amien, (p)apier, (n)ozyce lub (w)yjscie")
+                playerMove = input()
+                if playerMove == 'w':
+                    sys.exit()
+                if playerMove == 'k' or playerMove == 'p' or playerMove == 'n':
+                    break
+                print("Wpisz litere k,p,n")
+
+            if playerMove == 'k':
+                print("Kamien kontra...")
+            elif playerMove == 'p':
+                print("Papier kontra...")
+            elif playerMove == "n":
+                print("Nozyce kontra ...")
+
+            randomNumber = random.randint(1,3)
+            if randomNumber == 1:
+                computerMove = 'k'
+                print("Kamien")
+            elif randomNumber == 2:
+                computerMove = 'p'
+                print("Papier")
+            elif randomNumber == 3:
+                computerMove == 'n'
+                print('Nozyce')
+
+            if playerMove == computerMove:
+                print("Mamy remis!")
+                ties = ties + 1
+            elif playerMove == 'k' and computerMove == 'n':
+                print('Wygrales!')
+                wins = wins +1
+            elif playerMove == 'p' and computerMove == 'k':
+                print("Wygrales!")
+                wiins = wins + 1
+            elif playerMove == 'n' and computerMove == 'p':
+                wins = wins + 1
+            elif playerMove == 'k' and computerMove == 'p':
+                print('Przegrales')
+                losses = losses + 1
+            elif playerMove == 'p' and computerMove == 'n':
+                print('Przegrales')
+                losses = losses + 1
+            elif playerMove == 'n' and computerMove == 'k':
+                print('Przegrales!')
+                losses = losses + 1
+    #28
+    def list_methods(self):
+        list = []
+        print("Define your list")
+        print("How many elements?")
+        elements = input()
+
+        for i in range(elements):
+            list.append(input("write your element: "))
+
+        decision = input("What do you want to do with list?")
+        if decision == 1:
+            list.sort()
+            print(list)
+        elif decision == 2:
+            list.reverse()
+            print(list)
+        elif decision == 3:
+            list.sort(key =str.lower)
+            print(list)
+    #29
+    def magic8ball(self):
+        messages = ['To pewne',
+                    'Zdecydowanie tak',
+                    'Niejasnie, sprobuj ponownie',
+                    'Zapytaj ponownie pozniej',
+                    'Skoncentruj sie i zapytaj sie jeszcze raz',
+                    'Moja odpowiedz brzmi nie',
+                    'Bardzo watpliwe']
+        print(messages[random.randint(0, len(messages) - 1)])
+    #30
+    def easy_peasy(self):
+        while True:
+            num = random.randint(0, 9)
+            print(num)
+            user_number = int(input("What's your number?"))
+            if num == user_number:
+                break
+        print("Won!")
+        
+
+Menu().kolko_krzyzyk()
