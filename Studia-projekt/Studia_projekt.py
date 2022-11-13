@@ -1,4 +1,4 @@
-from email import message
+﻿from email import message
 from lib2to3.pytree import convert
 from platform import win32_edition
 from socket import inet_pton
@@ -34,11 +34,31 @@ class Menu():
 
     #1
     def start_menu(self):
-        print("Hi! Welcome in interactive Python Menu")
         choice = int(input("What do you want to do?"))
 
         if choice == 1:
-            self.convert_int_to_str_and_otherwise()
+            while True:
+                value = input("Please set a value, that you want to convert")
+                conversation_type = int(input("Please choose converstation type"))
+
+                if conversation_type == 1:
+                    new_str_value = str(value)
+                    print("Converstation to str done!")
+                    self.start_menu()
+                    self.return_value(new_str_value)
+                    break
+                elif conversation_type == 2:
+                    new_str_value = int(value)
+                    print("Converstation to int done!")
+                    self.start_menu()
+                    break
+                elif conversation_type == 3:
+                    new_str_value = float(value)
+                    print("Converstation to float done!")
+                    self.start_menu()
+                    break
+                else:
+                    print("Your choice is bad. Please try again!")
 
     #2
     def save_to_file(self):
@@ -285,7 +305,7 @@ class Menu():
             else:
                 turn = "X"
     #27
-    def papier_kamien_nozyce():
+    def papier_kamien_nozyce(self):
         wins = 0
         losses = 0
         ties = 0
@@ -316,7 +336,7 @@ class Menu():
                 computerMove = 'p'
                 print("Papier")
             elif randomNumber == 3:
-                computerMove == 'n'
+                computerMove = 'n'
                 print('Nozyce')
 
             if playerMove == computerMove:
@@ -378,6 +398,85 @@ class Menu():
             if num == user_number:
                 break
         print("Won!")
-        
 
-Menu().kolko_krzyzyk()
+    def translate_to_english(self, word):
+        if word == 'dzien':
+            print("day")
+        elif word == 'sun':
+            print("Słońce")
+        elif word == 'cheese':
+            print("Ser")
+    
+    def what_animal_say(self,word):
+        if word == "Miau":
+            print("Kot")
+        elif word == "Hau":
+            print("Pies")
+
+    def lambda_py(self):
+        x = lambda a : a + 10
+        print(x(5))
+
+#menu
+decision = int(input("Welcome to interactive menu! Please choose your function: "))
+if decision == 1: 
+   Menu().convert_int_to_str_and_otherwise()
+elif decision == 2:
+   Menu().save_to_file()
+elif decision == 3:
+   Menu().read_file()
+elif decision == 4:
+   Menu().create_csv_file()
+elif decision == 5:
+   Menu().list_your_friends()
+elif decision == 6:
+   Menu().del_friends_from_list()
+elif decision == 7:
+   Menu().gues_the_number()
+elif decision == 8:
+   Menu().gues_the_number_single()
+elif decision == 9:
+    Menu().delete_duplicate()
+elif decision == 10:
+    Menu().regex_phone_number(['666-666-6665'])
+elif decision == 11:
+    Menu().find_area_code_number(['(666)-666-6665'])
+elif decision == 12:
+    Menu().comprehension_list()
+elif decision == 13:
+    Menu().comprehension_sets()
+elif decision == 14:
+     Menu().reverse_word('slowo')
+elif decision == 15:
+     Menu().window_hello()
+elif decision == 16:
+     Menu().gues_the_number()
+elif decision == 17:
+     Menu().list_of_friends_on_birthday()
+elif decision == 18:
+     Menu().simple_dictioniary_phone()
+elif decision == 20:
+     Menu().kolko_krzyzyk()
+elif decision == 21:
+     Menu().papier_kamien_nozyce()
+elif decision == 22:
+     Menu().list_methods()
+elif decision == 23:
+     Menu().magic8ball()
+elif decision == 24:
+     Menu().easy_peasy()
+elif decision == 25:
+     Menu().kolko_krzyzyk()
+elif decision == 26:
+     Menu().convert_int_to_str_and_otherwise()
+elif decision == 27:
+      Menu().translate_to_english('word')
+elif decision == 28:
+      Menu().what_animal_say('miau')
+elif decision == 29:
+      Menu().lambda_py()
+elif decision == 30:
+      Menu().clear_console()
+else:
+      print("Zła wartośc! Podaj poprawną")
+       
